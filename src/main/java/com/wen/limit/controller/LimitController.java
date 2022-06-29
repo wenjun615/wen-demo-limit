@@ -2,6 +2,7 @@ package com.wen.limit.controller;
 
 import com.google.common.util.concurrent.RateLimiter;
 import com.wen.limit.annotation.Limit;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,5 +49,13 @@ public class LimitController {
     public String test2() {
         log.info("令牌桶limit获取令牌成功");
         return "ok";
+    }
+
+    @SneakyThrows
+    @RequestMapping("/hello")
+    public String hello() {
+        // 模拟内部耗时
+        TimeUnit.MILLISECONDS.sleep(100L);
+        return "hello";
     }
 }
